@@ -11,6 +11,6 @@ Let's decode the blockchain together! 🌐✨
 
 ### Wiki
 
-Take a look into the [Wiki](/path/to/wiki) to get some more information about my roadmap and the thought process
+Take a look into the [Wiki](/path/to/wiki](https://github.com/haase-laurenz/Rabbix/wiki)) to get some more information about my roadmap and the thought process
 
 ### Important Documents:
