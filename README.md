@@ -18,6 +18,15 @@ Let's decode the blockchain together! 🌐✨
 - Create simple Blockchain
 - Implement simple smart Contracts
 
+#### Learning Solidity Programming Language
+- most used language, e.g. ETH
+
+#### Learning about more advanced topics
+
+- DApp
+- Token Development
+- consenus mechanism
+  
 #### Writing the own Coin/Token in Solidity
 
 - Project for future
