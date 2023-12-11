@@ -1,11 +1,12 @@
 package startingProject.Blockchain;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Block {
 
-    private int prevHash;
-    private int ownHash;
-    private Transaction[] transactions;
+    private final int prevHash;
+    private final int ownHash;
+    private final Transaction[] transactions;
 
     public Block(int prevHash, Transaction[] transactions) {
         this.prevHash = prevHash;
@@ -20,24 +21,27 @@ public class Block {
         return this.prevHash;
     }
 
-    public void setPrevHash(int prevHash) {
-        this.prevHash = prevHash;
-    }
-
     public int getOwnHash() {
         return this.ownHash;
-    }
-
-    public void setOwnHash(int ownHash) {
-        this.ownHash = ownHash;
     }
 
     public Transaction[] getTransactions() {
         return this.transactions;
     }
 
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = transactions;
+    @Override
+    public int hashCode() {
+        return Objects.hash(Arrays.hashCode(transactions), prevHash);
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Block otherBlock = (Block) obj;
+        return Arrays.equals(transactions, otherBlock.transactions) &&
+                prevHash == otherBlock.prevHash;
+    }
+
+
 }
