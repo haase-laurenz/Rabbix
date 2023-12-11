@@ -1,4 +1,4 @@
-package gettingStarted;
+package startingProject.Blockchain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,8 @@ public class Blockchain {
     }
 
     public void generateNewBlock(){
-        
+        int prevHash=allBlocks.getLast().getOwnHash();
+        allBlocks.add(new Block(prevHash, new Transaction[0]));
     }
 
 }

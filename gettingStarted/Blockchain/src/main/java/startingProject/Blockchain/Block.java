@@ -1,4 +1,4 @@
-package gettingStarted;
+package startingProject.Blockchain;
 import java.util.Arrays;
 
 public class Block {
