@@ -10,3 +10,15 @@ Hey there! 👋 I'm Laurenz, and I'm diving headfirst into the fascinating world
 Let's decode the blockchain together! 🌐✨
 
 ### Important Documents:
+
+### My Roadmap:
+
+#### Understanding the basics
+
+- Create simple Blockchain
+- Implement simple smart Contracts
+
+#### Writing the own Coin/Token in Solidity
+
+- Project for future
+
