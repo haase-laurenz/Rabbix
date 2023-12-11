@@ -1,13 +1,13 @@
-package startingProject.Blockchain;
+package Blockchain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BlockchainApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BlockchainApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

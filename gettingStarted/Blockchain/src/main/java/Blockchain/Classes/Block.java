@@ -1,4 +1,4 @@
-package startingProject.Blockchain;
+package Blockchain.Classes;
 import java.util.Arrays;
 import java.util.Objects;
 

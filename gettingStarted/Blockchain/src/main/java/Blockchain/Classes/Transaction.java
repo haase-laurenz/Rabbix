@@ -1,4 +1,4 @@
-package startingProject.Blockchain;
+package Blockchain.Classes;
 
 import java.util.Objects;
 
@@ -10,7 +10,7 @@ public class Transaction {
 
     public Transaction(String sender, String receiver, double amount) {
         this.sender = sender;
-        this.receiver = receiver;
+        this.receiver = receiver; 
         this.amount = amount;
     }
 
