@@ -14,6 +14,13 @@ public class BlockchainController {
         return "index";
     }
 
+    @GetMapping(path = "/overview")
+    public String overview(Model model){
+
+        model.addAttribute("message", "Hello from Thymeleaf!");
+        return "overview";
+    }
+
     
 
 }
