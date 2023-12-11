@@ -32,7 +32,7 @@ Let's decode the blockchain together! 🌐✨
 
 - Project for future
 
-#### Rabbix - my own Crypto Project:
+## Rabbix - my own Crypto Project:
 
 ![rabbixProfile (1)](https://github.com/haase-laurenz/Rabbix/assets/119501670/4b692d3f-e02c-453e-94c9-3b4f23ebc2e8)
 
