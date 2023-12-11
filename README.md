@@ -18,6 +18,7 @@ Let's decode the blockchain together! 🌐✨
 - Create simple Blockchain
 - Implement simple smart Contracts
 
+
 #### Learning Solidity Programming Language
 - most used language, e.g. ETH
 
@@ -30,4 +31,10 @@ Let's decode the blockchain together! 🌐✨
 #### Writing the own Coin/Token in Solidity
 
 - Project for future
+
+#### Rabbix - my own Crypto Project:
+
+![rabbixProfile (1)](https://github.com/haase-laurenz/Rabbix/assets/119501670/4b692d3f-e02c-453e-94c9-3b4f23ebc2e8)
+
+
 
