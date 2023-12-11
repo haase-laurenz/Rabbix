@@ -9,8 +9,4 @@ Hey there! 👋 I'm Laurenz, and I'm diving headfirst into the fascinating world
 
 Let's decode the blockchain together! 🌐✨
 
-### Wiki
-
-Take a look into the [Wiki](/path/to/wiki](https://github.com/haase-laurenz/Rabbix/wiki)) to get some more information about my roadmap and the thought process
-
 ### Important Documents:
