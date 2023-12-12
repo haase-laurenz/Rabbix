@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
 @Controller 
-public class BlockchainController {
-    
+class BlockchainController {
+
     @GetMapping(path = "/")
     public String index(Model model){
 
