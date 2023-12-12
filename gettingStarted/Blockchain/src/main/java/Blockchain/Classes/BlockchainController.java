@@ -7,18 +7,31 @@ import org.springframework.ui.Model;
 @Controller 
 class BlockchainController {
 
+    private final Blockchain blockchain;
+
+    public BlockchainController() {
+        this.blockchain = new Blockchain(); 
+        this.blockchain.generateGenesisBlock();
+    }
+
     @GetMapping(path = "/")
     public String index(Model model){
 
-        model.addAttribute("message", "Hello from Thymeleaf!");
         return "index";
     }
 
     @GetMapping(path = "/overview")
     public String overview(Model model){
 
-        model.addAttribute("message", "Hello from Thymeleaf!");
+        model.addAttribute("blocks", blockchain.getAllBlocks());
         return "overview";
+    }
+
+    @GetMapping(path = "/overview/newBlock")
+    public String newBlock(Model model){
+
+        blockchain.generateNewBlock();
+        return "redirect:/overview";
     }
 
     

@@ -6,7 +6,35 @@
     <title>Blockchain Overview</title>
 </head>
 <body>
-    
-     
+
+    <table>
+        <thead>
+            <tr>
+                <th>Previous Hash</th>
+                <th>Current Hash</th>
+                <th>Transactions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop durch die Blockchain-Blöcke und zeige die Informationen an -->
+            <tr th:each="block : ${blocks}">
+                <td th:text="${block.prevHash}"></td>
+                <td th:text="${block.ownHash}"></td>
+                <td>
+                    <ul>
+                        <li th:each="transaction : ${block.transactions}">
+                            <span th:text="${transaction?.sender}"></span>
+                            <span th:text="${transaction?.receiver}"></span>
+                            <span th:text="${transaction?.amount}"></span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/overview/newBlock}"  class="content">Generate new Block</a>
+
+
 </body>
 </html>

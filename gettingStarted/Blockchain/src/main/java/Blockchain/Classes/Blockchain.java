@@ -9,8 +9,6 @@ public class Blockchain {
 
 
     public Blockchain() {
-        Transaction[] transactions = new Transaction[0];
-        this.allBlocks.add(new Block(0,transactions));
     }
 
 
@@ -19,8 +17,16 @@ public class Blockchain {
     }
 
     public void generateNewBlock(){
-        int prevHash=allBlocks.getLast().getOwnHash();
-        allBlocks.add(new Block(prevHash, new Transaction[0]));
+        String prevHash=allBlocks.getLast().getOwnHash();
+        List<Transaction> transactions=new ArrayList<>();
+        transactions.add(new Transaction("Laurenz", "Alex", 0.01));
+        transactions.add(new Transaction("Laurenz", "Alex", 0.01));
+        allBlocks.add(new Block(prevHash, transactions));
     }
+
+    public void generateGenesisBlock(){
+        allBlocks.add(new Block("0000000000000000000000000000000000000000000000000000000000000000",new ArrayList<Transaction>()));
+    }
+
 
 }
