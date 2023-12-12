@@ -281,5 +281,5 @@ section:before{
 
 /* Media queries */
  @media screen and (min-width: 1440px) {
-   section{height:700px}
+   section{height:100%}
  }
