@@ -20,18 +20,18 @@ class BlockchainController {
         return "index";
     }
 
-    @GetMapping(path = "/overview")
+    @GetMapping(path = "/home")
     public String overview(Model model){
 
         model.addAttribute("blocks", blockchain.getAllBlocks());
-        return "overview";
+        return "home";
     }
 
-    @GetMapping(path = "/overview/newBlock")
+    @GetMapping(path = "/home/newBlock")
     public String newBlock(Model model){
 
         blockchain.generateNewBlock();
-        return "redirect:/overview";
+        return "redirect:/home";
     }
 
     

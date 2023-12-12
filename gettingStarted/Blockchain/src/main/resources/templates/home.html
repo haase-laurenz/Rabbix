@@ -2,11 +2,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/styles/overview.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/navigation.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/overview.css}" />
     <title>Blockchain Overview</title>
 </head>
 <body>
 
+    <nav th:insert="~{navigation :: navigation}"></nav>
+    
     <table>
         <thead>
             <tr>
@@ -33,7 +36,7 @@
         </tbody>
     </table>
 
-    <a th:href="@{/overview/newBlock}"  class="content">Generate new Block</a>
+    <a th:href="@{/home/newBlock}"  class="content">Generate new Block</a>
 
 
 </body>
