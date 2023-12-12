@@ -1,4 +1,4 @@
-package Blockchain.Classes;
+package Blockchain.BlockDetails;
 
 import java.util.ArrayList;
 import java.util.List;
