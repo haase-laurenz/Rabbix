@@ -2,42 +2,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/resources/css/home.css}" />
     <link rel="stylesheet" th:href="@{/resources/css/navigation.css}" />
-    <link rel="stylesheet" th:href="@{/resources/css/overview.css}" />
+    
     <title>Blockchain Overview</title>
 </head>
 <body>
 
-    <nav th:insert="~{navigation :: navigation}"></nav>
     
-    <table>
-        <thead>
-            <tr>
-                <th>Previous Hash</th>
-                <th>Current Hash</th>
-                <th>Transactions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Loop durch die Blockchain-Blöcke und zeige die Informationen an -->
-            <tr th:each="block : ${blocks}">
-                <td th:text="${block.prevHash}"></td>
-                <td th:text="${block.ownHash}"></td>
-                <td>
-                    <ul>
-                        <li th:each="transaction : ${block.transactions}">
-                            <span th:text="${transaction?.sender}"></span>
-                            <span th:text="${transaction?.receiver}"></span>
-                            <span th:text="${transaction?.amount}"></span>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <section>
+        <div class="wrapper">
+         <h1 class="mega montserrat bold">
+            Blockchain: <span class="color-emphasis-1">Unveiling the Future.</span><br>
+            Where Trust Meets <span class="color-emphasis-1">Innovation.</span>
+        </h1>
+         </div>
+    </section>
 
-    <a th:href="@{/home/newBlock}"  class="content">Generate new Block</a>
-
-
+        <nav th:insert="~{navigation :: navigation}"></nav>
 </body>
 </html>
