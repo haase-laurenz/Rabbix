@@ -4,9 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.math.BigDecimal;
 
-
+@Table
 @Entity
 public class Account {
 
@@ -14,7 +17,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    private String name;
     private String email;
     private String password;
     private double balance;
@@ -23,8 +26,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(String username, String email, String password, double balance) {
-        this.username = username;
+    public Account(String name, String email, String password, double balance) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.balance = balance;
@@ -35,8 +38,8 @@ public class Account {
         return this.id;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getName() {
+        return this.name;
     }
 
     public String getEmail() {

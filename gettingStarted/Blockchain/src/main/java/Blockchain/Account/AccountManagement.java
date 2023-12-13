@@ -1,5 +1,7 @@
 package Blockchain.Account;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -9,8 +11,9 @@ import org.springframework.validation.Errors;
 @Service
 public class AccountManagement {
     
+    
     private final AccountRepository accounts;
-
+    @Autowired
     public AccountManagement(AccountRepository accounts){
         this.accounts=accounts;
     }   
@@ -37,7 +40,7 @@ public class AccountManagement {
 	}
 
     public Account findByName(String name) {
-        return accounts.findByName(name,null);
+        return accounts.findByName(name);
     }
     
 }
