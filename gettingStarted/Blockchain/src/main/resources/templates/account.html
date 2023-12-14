@@ -15,11 +15,11 @@
 		<input type="checkbox" id="chk" aria-hidden="true">
 
 			<div class="signup">
-				<form>
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="txt" placeholder="User name" required="">
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
+				<form th:action="@{/account/register}" method="post" th:object="${accountForm}">
+					<label for="name" aria-hidden="true">Sign up</label>
+					<input type="text" id="name" name="name" placeholder="User name" th:field="*{name}" required="required">
+					<input type="email" id="email" name="email" placeholder="Email" th:field="*{email}" required="required">
+					<input type="password" id="password" name="password" placeholder="Password" th:field="*{password}" required="required">
 					<button>Sign up</button>
 				</form>
 			</div>

@@ -20,12 +20,13 @@ public class RegistrationForm {
 
 	private final @NotEmpty String email;
 
-	public RegistrationForm(String name, String password, String email) {
+	public RegistrationForm(String name, String email,String password) {
 
 		this.name = name;
 		this.password = password;
 		this.email = email;
 	}
+
 
 	public String getName() {
 		return name;

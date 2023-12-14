@@ -25,7 +25,10 @@ public class AccountController {
 
 
     @GetMapping(path = "/account")
-    public String overview(Model model){
+    public String overview(Model model, RegistrationForm form){
+        
+    /*
+    
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         Object principal = authentication.getPrincipal(); // Get the principal (currently authenticated user)
@@ -41,6 +44,8 @@ public class AccountController {
 
             model.addAttribute("account", myaccount);
 		}
+        */
+        model.addAttribute("accountForm",form );
 
         return "account";
     }

@@ -26,7 +26,7 @@ public class AccountManagement {
 
         try {
 
-			return accounts.save(new Account(form.getName(), form.getEmail(), form.getPassword(), 1000));
+			return accounts.save(new Account(form.getName(), form.getEmail(), form.getPassword()));
 
 		} catch (Exception ex) {
 
