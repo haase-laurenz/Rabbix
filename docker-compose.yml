@@ -1,0 +1,38 @@
+# name: my-mysql
+services:
+  java-spring:
+    image: openjdk:21-oracle
+    container_name: blockchain-java-spring
+    ulimits:
+          nofile:
+            soft: 65536
+            hard: 65536
+    ports:
+      # forward port to host
+     - 8080:8080
+    working_dir: /blockchain
+
+    links:
+      - db
+
+  db:
+    image: mysql:latest
+    container_name: blockchain-mysql-compose_1
+    ports:
+      # forward port to host
+      # 3306=default mysql-port
+     - 3306:3306
+    environment:
+        MYSQL_ROOT_PASSWORD: root 
+        MYSQL_DATABASE: db
+    # for interactive shell (see https://stackoverflow.com/a/39150040)
+    # stdin_open: true # docker run -i
+    # tty: true        # docker run -t
+  # for accessing database through `localhost:8080`
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+     - "8081:8080"
+  
+  
