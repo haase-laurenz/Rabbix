@@ -72,6 +72,13 @@
 			<version>3.0.1</version> <!-- Aktualisiere die Version auf die neueste verfügbare Version -->
 		</dependency>
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>0.11.6</version>
+			<scope>provided</scope>
+		</dependency>
+
 		
 
 	</dependencies>
