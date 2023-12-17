@@ -1,27 +1,53 @@
 package com.example.RegisterLogin.Controller;
 
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.RegisterLogin.Dto.AccountDTO;
 import com.example.RegisterLogin.Dto.LoginDTO;
+import com.example.RegisterLogin.Entity.AccountForm;
 import com.example.RegisterLogin.Service.AccountService;
 import com.example.RegisterLogin.response.LoginResponse;
 
+import jakarta.validation.Valid;
+
+import java.io.Console;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@RestController
+@Controller
 @CrossOrigin
 public class AccountController {
 
     @Autowired
     AccountService accountService;
     
-    @PostMapping(path="/save")
-    public String saveAccount(@RequestBody AccountDTO accountDTO){
+    @GetMapping(path = "/myAccount")
+    public String showAccount(){
+        
+        return "myAccount";
+    }
+
+    @GetMapping(path = "/newAccount")
+    public String showLogin(Model model,AccountForm accountForm){
+        model.addAttribute("accountForm", accountForm);
+        return "newAccount";
+    }
+
+
+    @PostMapping(path="/account/save")
+    public String saveAccount(@Valid AccountForm accountForm, Errors result){
+
+        if (result.hasErrors()) {
+			return "newAccount";
+		}
+
+        AccountDTO accountDTO = new AccountDTO(0, accountForm.getName(), accountForm.getEmail(), accountForm.getPassword());
 
         for (int i=0;i<3;i++){
             System.out.println("");
@@ -31,11 +57,14 @@ public class AccountController {
             System.out.println("");
         }
         String name = accountService.addAccount(accountDTO);
-        return name;
+
+        return "redirect:/newAccount";
     }
 
-    @PostMapping(path="/login")
-    public ResponseEntity<?> loginAccount(@RequestBody LoginDTO loginDTO){
+    @PostMapping(path="/account/login")
+    public String loginAccount(@RequestParam String email,@RequestParam String password){
+
+        LoginDTO loginDTO = new LoginDTO(email,password);
 
         for (int i=0;i<3;i++){
             System.out.println("");
@@ -45,7 +74,13 @@ public class AccountController {
             System.out.println("");
         }
         LoginResponse loginMesage = accountService.loginAccount(loginDTO);
-        return ResponseEntity.ok(loginMesage);
+
+        if (loginMesage.getStatus()==true){
+            return "redirect:/myAccount";
+        }else{
+             return "redirect:/newAccount";
+        }
+       
     }
 
 }

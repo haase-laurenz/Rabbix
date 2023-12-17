@@ -63,6 +63,11 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.0.1</version> <!-- Aktualisiere die Version auf die neueste verfügbare Version -->
+		</dependency>
 	</dependencies>
 
 	<build>

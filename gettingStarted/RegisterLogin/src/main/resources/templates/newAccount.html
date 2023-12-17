@@ -1,0 +1,41 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/resources/css/account.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/navigation.css}" />
+    
+    <title>Blockchain Overview</title>
+</head>
+<body>
+
+    <nav th:insert="~{navigation :: navigation}"></nav>
+    
+    <div class="main">  	
+		    <input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form th:action="@{/account/save}" method="post" th:object="${accountForm}">
+					<label for="name" aria-hidden="true">Sign up</label>
+					<input type="text" id="name" name="name" placeholder="User name" th:field="*{name}" required="required">
+					<input type="email" id="email" name="email" placeholder="Email" th:field="*{email}" required="required">
+					<input type="password" id="password" name="password" placeholder="Password" th:field="*{password}" required="required">
+					<button>Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+                <form action="/account/login" method="post">
+                    <label for="chk" aria-hidden="true">Login</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required="">
+                    <input type="password" name="password" id="password" placeholder="Password" required="">
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+	</div>
+
+    
+
+    
+</body>
+</html>
