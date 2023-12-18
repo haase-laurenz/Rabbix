@@ -3,6 +3,7 @@ package com.example.RegisterLogin.Service;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ import com.example.RegisterLogin.Repo.AccountRepo;
 @Service
 public class CustomUserDetailsService implements UserDetailsService{
 
+    @Autowired
     private AccountRepo accountRepo;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

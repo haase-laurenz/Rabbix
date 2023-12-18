@@ -24,7 +24,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -38,10 +37,10 @@ public class AccountController {
     
     @GetMapping(path = "/myAccount")
     public String showAccount(Model model, Principal principal){
-        
-       
 
+        System.out.println("TRYED TO LOG IN");
         if (principal==null){
+            System.out.println("NO RIGHTS FOR myAccount");
             return "redirect:/newAccount";
         }
 
@@ -88,8 +87,7 @@ public class AccountController {
 
         return "redirect:/newAccount";
     }
-
-    @GetMapping(path="/account/login")
+    
     
 
     @PostMapping(path="/account/login")
