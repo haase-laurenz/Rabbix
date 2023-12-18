@@ -26,7 +26,7 @@ public class AccountImpl implements AccountService{
     public String addAccount(AccountDTO accountDTO) {
 
 
-        Account employee = new Account(
+        Account account = new Account(
             accountDTO.getAccountid(),
             accountDTO.getName(),
             accountDTO.getEMail(),
@@ -34,21 +34,21 @@ public class AccountImpl implements AccountService{
         );
 
         
-        accountRepo.save(employee);
+        accountRepo.save(account);
 
-        return employee.getName();
+        return account.getName();
     }
 
     @Override
     public LoginResponse loginAccount(LoginDTO loginDTO) {
         
         String msg="";
-        Account employee = accountRepo.findByEmail(loginDTO.getEmail());
+        Account account = accountRepo.findByEmail(loginDTO.getEmail());
 
-        if (employee!=null){
+        if (account!=null){
 
             String password = loginDTO.getPassword();
-            String encodedPassword =employee.getPassword();
+            String encodedPassword =account.getPassword();
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
 
             if(isPwdRight){

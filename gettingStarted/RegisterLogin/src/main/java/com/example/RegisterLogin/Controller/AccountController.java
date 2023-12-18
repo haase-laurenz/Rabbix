@@ -5,15 +5,19 @@ import com.example.RegisterLogin.Dto.LoginDTO;
 import com.example.RegisterLogin.Entity.AccountForm;
 import com.example.RegisterLogin.Service.AccountService;
 import com.example.RegisterLogin.response.LoginResponse;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import jakarta.validation.Valid;
 
 import java.io.Console;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -27,20 +31,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 @CrossOrigin
 public class AccountController {
 
+    @Autowired 
+    private UserDetailsService userDetailsService;
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
     
     @GetMapping(path = "/myAccount")
-    @PreAuthorize("hasRole('BOSS')")
-    public String showAccount(){
+    public String showAccount(Model model, Principal principal){
         
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       
 
-        if (authentication!=null && authentication.isAuthenticated()) {
-            return "myAccount";
-        }else{
+        if (principal==null){
             return "redirect:/newAccount";
         }
+
+         for (int i=0;i<3;i++){
+            System.out.println("");
+        }
+        System.out.println(principal.toString());
+        for (int i=0;i<3;i++){
+            System.out.println("");
+        }
+
+        System.out.println(principal.toString());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+        model.addAttribute("userDetals", userDetails);
+        return "myAccount";
+
         
     }
 
@@ -52,7 +69,7 @@ public class AccountController {
 
 
     @PostMapping(path="/account/save")
-    public String saveAccount(@Valid AccountForm accountForm, Errors result){
+    public String saveAccount(@Valid AccountForm accountForm, Errors result, Model model){
 
         if (result.hasErrors()) {
 			return "newAccount";
@@ -71,6 +88,9 @@ public class AccountController {
 
         return "redirect:/newAccount";
     }
+
+    @GetMapping(path="/account/login")
+    
 
     @PostMapping(path="/account/login")
     public String loginAccount(@RequestParam String email,@RequestParam String password){
