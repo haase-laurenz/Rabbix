@@ -11,6 +11,9 @@ import jakarta.validation.Valid;
 import java.io.Console;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -28,9 +31,17 @@ public class AccountController {
     AccountService accountService;
     
     @GetMapping(path = "/myAccount")
+    @PreAuthorize("hasRole('BOSS')")
     public String showAccount(){
         
-        return "myAccount";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication!=null && authentication.isAuthenticated()) {
+            return "myAccount";
+        }else{
+            return "redirect:/newAccount";
+        }
+        
     }
 
     @GetMapping(path = "/newAccount")
