@@ -3,6 +3,7 @@ package com.example.RegisterLogin.Entity;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -96,9 +97,15 @@ public class Block {
     public List<Transaction> getTransactions() {
         return this.transactions;
     }
+
+    public int getTransactionSize(){
+        return this.transactions.size();
+    }
     
-     public LocalDateTime getTimestamp() {
-        return this.timestamp;
+    public String getTimestamp() {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return this.timestamp.format(formatter);
     }
 
      private int getId() {

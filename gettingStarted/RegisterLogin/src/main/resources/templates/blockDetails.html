@@ -12,28 +12,26 @@
 </head>
 <body>
     
-    <h2>Block Entities</h2>
+    <div class="container">
+	
+        <div class="table">
+            <div class="table-header">
+                <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Height</a></div>
+                <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Timestamp</a></div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Height</th>
-                <th>Timestamp</th>
-                <th>Previous Hash</th>
-                <th>Own Hash</th>
-            </tr>
-        </thead>
-        <tbody th:each="block : ${blocks}">
-            
-                <tr>
-                    <td  th:text="${block.height}"></td>
-                    <td  th:text="${block.timestamp}"></td>
-                    <td  th:text="${block.prevHash}"></td>
-                    <td  th:text="${block.ownHash}"></td>
-                </tr>
-            </tr>
-        </tbody>
-    </table>
+            </div>
+            <div class="table-content">    
+                <th:block th:each="block : ${blocks}">
+                    <div class="table-row">
+                        <div class="table-data" th:text="${block.height}"></div>
+                        <div class="table-data" th:text="${block.timestamp}"></div>
+                        
+                        
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>

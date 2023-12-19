@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" th:href="@{/resources/css/login.css}" />
     <link rel="stylesheet" th:href="@{/resources/css/navigation.css}" />
     
@@ -17,7 +18,7 @@
 			<div class="signup">
 				<form th:action="@{/account/save}" method="post" th:object="${accountForm}">
 					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" id="name" name="name" placeholder="User name" th:field="*{name}" required="required">
+					<input type="text" id="name" name="name" placeholder="Username" th:field="*{name}" required="required">
 					<input type="email" id="email" name="email" placeholder="Email" th:field="*{email}" required="required">
 					<input type="password" id="password" name="password" placeholder="Password" th:field="*{password}" required="required">
 					<button>Sign up</button>
