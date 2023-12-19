@@ -1,0 +1,34 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="stylesheet" th:href="@{/resources/css/mining.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/navigation.css}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining</title>
+</head>
+<body>
+    <nav th:insert="~{navigation :: navigation}"></nav>
+    
+    <div class="mining-container">
+        <h1>Mining UI</h1>
+        <p>Click the mine button to start mining!</p>
+        <button onclick="startMining()">Mine</button>
+        <p id="mining-status"></p>
+    </div>
+
+    <script>
+        function startMining() {
+            document.getElementById('mining-status').innerText = 'Mining in progress...';
+            // Implement actual mining logic here (this is just a placeholder)
+            setTimeout(() => {
+                document.getElementById('mining-status').innerText = 'Mining completed!';
+            }, 3000);
+        }
+    </script>
+    
+</body>
+</html>
