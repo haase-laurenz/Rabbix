@@ -33,12 +33,14 @@ body{
 	cursor: pointer;
 }
 .mynavbar nav .animation {
-	position: absolute;
-	height: 100%;
-	top: 0;
-	z-index: 0;
-	transition: all .5s ease 0s;
-	border-radius: 8px;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  z-index: 0;
+  transition: left .5s ease 0s, background-color .5s ease 0s; /* Ändere die Transition-Eigenschaften */
+  border-radius: 8px;
+  left: 0; /* Setze die Startposition auf 0 */
+  background-color: #1abc9c; /* Setze die Starthintergrundfarbe */
 }
 .mynavbar a:nth-child(1) {
 	width: 100px;
