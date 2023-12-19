@@ -9,21 +9,33 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+.allBlocks{
+    margin: 5em auto;
+    text-align: center;
+    padding: 2em;
+    background-color: rgb(85, 86, 86);
+}
+
 .container {
-  max-width: 90%;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin-top: -20em;
+    max-width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
 }
 
 .table {
-  width: 100%;
-  
+    width: 100%;
+    max-height: 400px; /* Setze die gewünschte maximale Höhe für die Tabelle */
+    overflow-y: auto; /* Fügt vertikalen Bildlauf hinzu, wenn die Tabelle zu groß wird */
 }
+
+.table-header th {
+    position: sticky; /* make the table heads sticky */
+    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+  }
 
 .table-header {
   display: flex;
@@ -33,17 +45,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .table-row {
+    color: #000;
   display: flex;
   width: 100%;
   padding: 18px 0;
-}
-.table-row:nth-of-type(odd) {
-  background: #EEEEEE;
+  background: #cacaca;
 }
 
-.table-row:nth-of-type(even) {
-    background: #918e8e;
+.table a {
+    text-decoration: none;
+    
+}
+
+.table-row:hover {
+    background-color: #727272; /* Füge hier die Hintergrundfarbe für den Hover-Effekt ein */
+    cursor: pointer; /* Ändere den Cursor, um anzuzeigen, dass es anklickbar ist */
   }
+  
+
 
 .table-data, .header__item {
   flex: 1 1 20%;

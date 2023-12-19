@@ -42,7 +42,6 @@ public class AccountImpl implements AccountService{
     @Override
     public LoginResponse loginAccount(LoginDTO loginDTO) {
         
-        String msg="";
         Account account = accountRepo.findByUsername(loginDTO.getUsername());
 
         if (account!=null){

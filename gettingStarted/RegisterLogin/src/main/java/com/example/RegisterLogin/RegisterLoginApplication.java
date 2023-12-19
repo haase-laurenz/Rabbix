@@ -24,7 +24,7 @@ public class RegisterLoginApplication {
 	@Bean
     public CommandLineRunner init(BlockchainService blockchainService) {
         return args -> {
-           
+
 			if (blockchainService.getHeight()==0){
 
 				 // generate First Block

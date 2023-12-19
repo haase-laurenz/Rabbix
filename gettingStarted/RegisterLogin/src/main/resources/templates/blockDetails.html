@@ -14,27 +14,46 @@
 <body>
     
     <nav th:insert="~{navigation :: navigation}"></nav>
-    
-    <div class="container">
-	
-        <div class="table">
-            <div class="table-header">
-                <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Height</a></div>
-                <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Timestamp</a></div>
-
-            </div>
-            <div class="table-content">    
-                <th:block th:each="block : ${blocks}">
-                    <div class="table-row">
-                        <div class="table-data" th:text="${block.height}"></div>
-                        <div class="table-data" th:text="${block.timestamp}"></div>
-                        
-                        
-                    </div>
-                </th:block>
-            </div>
+        <div class = "allBlocks">
+            <h1>Check out all Blocks ever created!</h1> 
         </div>
-    </div>
+        
+        <div class="container">
+        
+            <div class="table">
+                <div class="table-header">
+                    <div class="header__item"><a id="wins" class="filter__link filter__link--number">
+                        <th>Height</th>
+                    
+                    </a></div>
+                    <div class="header__item"><a id="draws" class="filter__link filter__link--number" >
+                        <th>Timestamp</th>
+                    </a></div>
+
+                    <div class="header__item"><a id="draws" class="filter__link filter__link--number" >
+                        <th>Transactions</th>
+                    </a></div>
+
+                </div>
+                <div class="table-content">    
+                    <th:block th:each="block : ${blocks}">
+                        <a href="/">
+                            <div class="table-row">
+                                <div class="table-data" th:text="${block.height}"></div>
+                                <div class="table-data" th:text="${block.timestamp}"></div>
+                                <div class="table-data" th:text="${block.transactionSize}"></div>
+                                
+                            </div>
+                        </a>
+                    </th:block>
+                </div>
+            </div>
+            
+        </div>
+
+    <a th:href="@{/newBlock}">
+    <button>Neuer Block</button>
+    </a>
     
 </body>
 </html>
