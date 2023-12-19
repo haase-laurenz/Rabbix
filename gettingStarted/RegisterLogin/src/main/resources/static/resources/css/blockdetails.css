@@ -13,7 +13,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 5em auto;
     text-align: center;
     padding: 2em;
-    background-color: rgb(85, 86, 86);
+    background: rgb(22,195,181);
+background: linear-gradient(90deg, rgba(22,195,181,1) 0%, rgba(9,121,103,1) 27%, rgba(3,134,203,1) 70%, rgba(0,212,255,1) 100%);
 }
 
 .container {
@@ -24,6 +25,13 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     align-items: center;
     overflow-y: auto;
+}
+
+.container h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    color: #fff;
 }
 
 .table {

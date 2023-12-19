@@ -108,7 +108,7 @@ public class Block {
         return this.timestamp.format(formatter);
     }
 
-     private int getId() {
+    public int getId() {
         return id;
     }
 

@@ -49,7 +49,7 @@ public class AccountController {
         System.out.println("Account: "+account.toString());
 
         model.addAttribute("account", account);
-        
+
         return "myAccount";
 
         

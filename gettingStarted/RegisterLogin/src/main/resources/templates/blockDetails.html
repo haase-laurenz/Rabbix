@@ -37,12 +37,11 @@
                 </div>
                 <div class="table-content">    
                     <th:block th:each="block : ${blocks}">
-                        <a href="/">
+                        <a th:href="@{/block/{id}(id=${block.id})}">
                             <div class="table-row">
                                 <div class="table-data" th:text="${block.height}"></div>
                                 <div class="table-data" th:text="${block.timestamp}"></div>
                                 <div class="table-data" th:text="${block.transactionSize}"></div>
-                                
                             </div>
                         </a>
                     </th:block>
