@@ -36,14 +36,14 @@ public class AccountImpl implements AccountService{
         
         accountRepo.save(account);
 
-        return account.getName();
+        return account.getUsername();
     }
 
     @Override
     public LoginResponse loginAccount(LoginDTO loginDTO) {
         
         String msg="";
-        Account account = accountRepo.findByEmail(loginDTO.getEmail());
+        Account account = accountRepo.findByUsername(loginDTO.getUsername());
 
         if (account!=null){
 
@@ -52,7 +52,7 @@ public class AccountImpl implements AccountService{
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
 
             if(isPwdRight){
-                Optional<Account> real_employee = accountRepo.findOneByEmailAndPassword(loginDTO.getEmail(),encodedPassword);
+                Optional<Account> real_employee = accountRepo.findOneByUsernameAndPassword(loginDTO.getUsername(),encodedPassword);
 
                 if (real_employee.isPresent()){
                     return new LoginResponse("Login Success", true);
@@ -67,6 +67,11 @@ public class AccountImpl implements AccountService{
         }else{
             return new LoginResponse("Email not exists", false);
         }
+    }
+
+    @Override
+    public Account findByName(String username) {
+        return accountRepo.findByUsername(username);
     }
     
 }

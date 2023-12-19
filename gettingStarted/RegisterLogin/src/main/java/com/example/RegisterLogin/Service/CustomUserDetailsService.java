@@ -21,15 +21,15 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
     private AccountRepo accountRepo;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        Account account = accountRepo.findByName(username);
+        Account account = accountRepo.findByUsername(username);
 
         if (account == null){
             throw new UsernameNotFoundException("No User found");
         }
 
-        return new CustomUserDetails(account.getName(), account.getPassword(), authorities(), account.getEmail());
+        return new CustomUserDetails(account.getUsername(), account.getPassword(), authorities(), account.getEmail());
         
     }
 

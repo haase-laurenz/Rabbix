@@ -2,6 +2,7 @@ package com.example.RegisterLogin.Controller;
 
 import com.example.RegisterLogin.Dto.AccountDTO;
 import com.example.RegisterLogin.Dto.LoginDTO;
+import com.example.RegisterLogin.Entity.Account;
 import com.example.RegisterLogin.Entity.AccountForm;
 import com.example.RegisterLogin.Service.AccountService;
 import com.example.RegisterLogin.response.LoginResponse;
@@ -12,6 +13,7 @@ import jakarta.validation.Valid;
 import java.io.Console;
 import java.security.Principal;
 
+import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -32,38 +34,37 @@ public class AccountController {
 
     @Autowired 
     private UserDetailsService userDetailsService;
+
     @Autowired
     private AccountService accountService;
+
+
+    public AccountController(UserDetailsService userDetailsService, AccountService accountService) {
+        this.userDetailsService = userDetailsService;
+        this.accountService=accountService;
+    }
+
     
     @GetMapping(path = "/myAccount")
-    public String showAccount(Model model, Principal principal){
+    public String showAccount(Model model,Principal principal){
 
-        System.out.println("TRYED TO LOG IN");
-        if (principal==null){
-            System.out.println("NO RIGHTS FOR myAccount");
-            return "redirect:/newAccount";
-        }
+       
+        
+        Account account = accountService.findByName(principal.getName());
 
-         for (int i=0;i<3;i++){
-            System.out.println("");
-        }
-        System.out.println(principal.toString());
-        for (int i=0;i<3;i++){
-            System.out.println("");
-        }
+        System.out.println("Account: "+account.toString());
 
-        System.out.println(principal.toString());
-        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-        model.addAttribute("userDetals", userDetails);
+        model.addAttribute("account", account);
+        
         return "myAccount";
 
         
     }
 
-    @GetMapping(path = "/newAccount")
+    @GetMapping(path = "/login")
     public String showLogin(Model model,AccountForm accountForm){
         model.addAttribute("accountForm", accountForm);
-        return "newAccount";
+        return "login";
     }
 
 
@@ -71,7 +72,7 @@ public class AccountController {
     public String saveAccount(@Valid AccountForm accountForm, Errors result, Model model){
 
         if (result.hasErrors()) {
-			return "newAccount";
+			return "login";
 		}
 
         AccountDTO accountDTO = new AccountDTO(0, accountForm.getName(), accountForm.getEmail(), accountForm.getPassword());
@@ -85,20 +86,20 @@ public class AccountController {
         }
         String name = accountService.addAccount(accountDTO);
 
-        return "redirect:/newAccount";
+        return "redirect:/login";
     }
     
     
 
     @PostMapping(path="/account/login")
-    public String loginAccount(@RequestParam String email,@RequestParam String password){
+    public String loginAccount(@RequestParam String username,@RequestParam String password){
 
-        LoginDTO loginDTO = new LoginDTO(email,password);
+        LoginDTO loginDTO = new LoginDTO(username,password);
 
         for (int i=0;i<3;i++){
             System.out.println("");
         }
-        System.out.println(loginDTO.toString());
+        System.out.println("loginDTO "+loginDTO.toString());
         for (int i=0;i<3;i++){
             System.out.println("");
         }
@@ -107,7 +108,7 @@ public class AccountController {
         if (loginMesage.getStatus()==true){
             return "redirect:/myAccount";
         }else{
-             return "redirect:/newAccount";
+             return "redirect:/login";
         }
        
     }

@@ -6,10 +6,38 @@
     <link rel="stylesheet" th:href="@{/resources/css/navigation.css}" />
     
     <title>Blockchain Overview</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dashboard</title>
 </head>
 <body>
     
     <nav th:insert="~{navigation :: navigation}"></nav>
-    
+
+    <div class="dashboard">
+        <h2>Your Dashboard</h2>
+
+        <div class="details">
+            <p>Name: <span th:text="${account.username}"></span></p>
+            <p>Email: <span th:text="${account.email}"></span></p>
+            <p>Password: <span th:text="${account.password}"></span></p>
+        </div>
+
+        <div class="crypto-info">
+            <!-- Hier könntest du weitere Crypto-Informationen hinzufügen -->
+            <p>Rabbix Balance: <span th:text="${bitcoinBalance}"></span></p>
+            <p>Rabbix Mined: <span th:text="${ethereumBalance}"></span></p>
+            <p>Rabbix Transactions: <span th:text="${ethereumBalance}"></span></p>
+            <!-- Weitere Informationen je nach Bedarf -->
+        </div>
+
+        <form action="/logout" method="post">
+            <button type="submit">Logout</button>
+        </form>
+
+
+
+    </div>
+
 </body>
 </html>

@@ -10,6 +10,10 @@ Areal Alien ❥ 雷克斯
 █▄▄█─█░░▀░░┬░░▀░░█─█▄▄█
 -*-~*~-*-*-~*~-*-*-~*~* |
 - */
+body{
+	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+}
+
 :root {
     --primary: 237, 94%, 81%;
     --background: 266, 16%, 92%;

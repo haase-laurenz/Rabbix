@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.util.AntPathMatcher;
 
 import com.example.RegisterLogin.Service.CustomUserDetailsService;
 
@@ -24,6 +26,7 @@ public class SecurityConfig {
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+    
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -31,15 +34,20 @@ public class SecurityConfig {
         http
             .csrf().disable()
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/myAccount").authenticated()
+                .requestMatchers("myAccount").authenticated()
                 .anyRequest().permitAll()
             )
             .formLogin(formLogin -> formLogin
-                .loginPage("/newAccount")
-                .loginProcessingUrl("/newAccount")
-                .defaultSuccessUrl("/myAccount")
+                .loginPage("/login")
+                .loginProcessingUrl("/account/login")
+                .defaultSuccessUrl("/myAccount",true)
                 .permitAll()
-            );
+            )
+            .logout().invalidateHttpSession(true)
+            .clearAuthentication(true)
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/login?login").permitAll()
+            ;
             
 
         return http.build();
@@ -49,5 +57,5 @@ public class SecurityConfig {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
-    
+
 }

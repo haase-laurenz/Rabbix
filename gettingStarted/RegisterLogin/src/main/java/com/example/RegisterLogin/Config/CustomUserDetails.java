@@ -20,6 +20,10 @@ public class CustomUserDetails implements UserDetails{
         this.email = email;
     }
 
+    public String getEmail(){
+        return email;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

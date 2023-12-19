@@ -16,8 +16,8 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int accountid;
 
-    @Column(name = "account_name",length = 255)
-    private String name;
+    @Column(name = "account_username",length = 255)
+    private String username;
 
     @Column(name = "account_email",length = 255)
     private String email;    
@@ -26,9 +26,9 @@ public class Account {
     private String password;
 
 
-    public Account(int accountid, String name, String email, String password) {
+    public Account(int accountid, String username, String email, String password) {
         this.accountid = accountid;
-        this.name = name;
+        this.username = username;
         this.email = email;
         this.password = password;
     }   
@@ -46,12 +46,12 @@ public class Account {
         this.accountid = accountid;
     }
 
-    public String getName() {
-        return this.name;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getEmail() {
@@ -75,7 +75,7 @@ public class Account {
     public String toString() {
         return "{" +
             " accountid='" + getaccountid() + "'" +
-            ", name='" + getName() + "'" +
+            ", name='" + getUsername() + "'" +
             ", email='" + getEmail() + "'" +
             ", password='" + getPassword() + "'" +
             "}";

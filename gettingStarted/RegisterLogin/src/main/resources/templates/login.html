@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/resources/css/account.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/login.css}" />
     <link rel="stylesheet" th:href="@{/resources/css/navigation.css}" />
     
     <title>Blockchain Overview</title>
@@ -27,7 +27,7 @@
 			<div class="login">
                 <form action="/account/login" method="post">
                     <label for="chk" aria-hidden="true">Login</label>
-                    <input type="email" name="email" id="email" placeholder="Email" required="">
+                    <input type="text" name="username" id="username" placeholder="Username" required="">
                     <input type="password" name="password" id="password" placeholder="Password" required="">
                     <button type="submit">Login</button>
                 </form>
