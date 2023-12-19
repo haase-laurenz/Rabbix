@@ -25,7 +25,7 @@ public class BlockchainService {
     }
 
     public void generateGenesisBlock(){
-        Block block = new Block(0, "0000000000000000000000000000000000000000000000000000000000000000", new ArrayList<Transaction>(),1);
+        Block block = new Block(0, "0000000000000000000000000000000000000000000000000000000000000000", new ArrayList<Transaction>(),0);
         blockRepo.save(block);
     }
 

@@ -26,8 +26,8 @@
         <tbody th:each="block : ${blocks}">
             
                 <tr>
-   
-                    <td  th:text="${block.timeStamp}"></td>
+                    <td  th:text="${block.height}"></td>
+                    <td  th:text="${block.timestamp}"></td>
                     <td  th:text="${block.prevHash}"></td>
                     <td  th:text="${block.ownHash}"></td>
                 </tr>

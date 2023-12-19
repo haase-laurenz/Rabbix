@@ -97,16 +97,16 @@ public class Block {
         return this.transactions;
     }
     
-     private String getTimestamp() {
-        return null;
+     public LocalDateTime getTimestamp() {
+        return this.timestamp;
     }
 
      private int getId() {
         return id;
     }
 
-    private int getHeight() {
-        return height;
+    public String getHeight() {
+        return Integer.toString(height);
     }
 
 
