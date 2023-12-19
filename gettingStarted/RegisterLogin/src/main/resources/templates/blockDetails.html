@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" th:href="@{/resources/css/navigation.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/blockdetails.css}" />
+    <title>Blockchain Overview</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dashboard</title>
+</head>
+<body>
+    
+    <h2>Block Entities</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Height</th>
+                <th>Timestamp</th>
+                <th>Previous Hash</th>
+                <th>Own Hash</th>
+            </tr>
+        </thead>
+        <tbody th:each="block : ${blocks}">
+            
+                <tr>
+   
+                    <td  th:text="${block.timeStamp}"></td>
+                    <td  th:text="${block.prevHash}"></td>
+                    <td  th:text="${block.ownHash}"></td>
+                </tr>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>
