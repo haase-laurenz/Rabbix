@@ -1,5 +1,9 @@
 package com.example.RegisterLogin.Entity;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,16 +29,45 @@ public class Account {
     @Column(name = "account_password",length = 255)
     private String password;
 
+    @Column(name = "account_public_key", length = 255)
+    private String publicKey;
+
+    @Column(name = "account_private_key", length = 255)
+    private String privateKey;
+
 
     public Account(int accountid, String username, String email, String password) {
         this.accountid = accountid;
         this.username = username;
         this.email = email;
         this.password = password;
+        KeyPair keyPair = generateKeyPair();
+        this.publicKey = bytesToHex(keyPair.getPublic().getEncoded(),16);
+        this.privateKey = bytesToHex(keyPair.getPrivate().getEncoded(),16);
     }   
 
 
     public Account() {
+    }
+
+    private KeyPair generateKeyPair() {
+        try {
+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+            keyPairGenerator.initialize(2048);
+            return keyPairGenerator.generateKeyPair();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            // Handle die Ausnahme entsprechend
+            return null;
+        }
+    }
+
+    private String bytesToHex(byte[] bytes, int length) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < length && i < bytes.length; i++) {
+            result.append(String.format("%02X", bytes[i]));
+        }
+        return result.toString();
     }
 
 
@@ -68,6 +101,14 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPublicKey() {
+        return this.publicKey;
+    }
+
+    public String getPrivateKey() {
+        return this.privateKey;
     }
 
 

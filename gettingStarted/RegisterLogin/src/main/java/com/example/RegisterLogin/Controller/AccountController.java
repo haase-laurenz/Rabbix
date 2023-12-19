@@ -46,8 +46,6 @@ public class AccountController {
         
         Account account = accountService.findByName(principal.getName());
 
-        System.out.println("Account: "+account.toString());
-
         model.addAttribute("account", account);
 
         return "myAccount";

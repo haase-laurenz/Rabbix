@@ -34,6 +34,8 @@ public class SecurityConfig {
         http
             .csrf().disable()
             .authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("mining").authenticated()
+                .requestMatchers("transaction").authenticated()
                 .requestMatchers("myAccount").authenticated()
                 .anyRequest().permitAll()
             )
