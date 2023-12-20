@@ -14,10 +14,13 @@
     <nav th:insert="~{navigation :: navigation}"></nav>
     
     <div class="mining-container">
+        <h1>Reward: 50 Rabbix Coins per found Block</h1>
         <p>Click the mine button to start mining!</p>
         <form th:action="@{/mining/doMining}">
             <button type="submit" th:text="${miningStatus != null ? (miningStatus ? 'STOP MINING' : 'START MINING') : 'Unknown'}"></button>
         </form>
+        <p>Blocks Mined: <span th:text="${account.blocksMined}"></span></p>
+        <p>Rabbix Coins through mining: <span th:text="${account.rabbixCoinsMined}"></span></p>
     </div>
 
     

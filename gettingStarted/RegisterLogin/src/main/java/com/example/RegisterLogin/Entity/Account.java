@@ -35,6 +35,15 @@ public class Account {
     @Column(name = "account_private_key", length = 255)
     private String privateKey;
 
+    @Column(name = "account_blocksMined", length = 43)
+    private int blocksMined;
+    
+    @Column(name = "account_rabbixCoinsTotal", length = 43)
+    private int rabbixCoinsTotal;
+
+    @Column(name = "account_rabbixCoinsMined", length = 43)
+    private int rabbixCoinsMined;
+
 
     public Account(int accountid, String username, String email, String password) {
         this.accountid = accountid;
@@ -44,6 +53,9 @@ public class Account {
         KeyPair keyPair = generateKeyPair();
         this.publicKey = bytesToHex(keyPair.getPublic().getEncoded(),16);
         this.privateKey = bytesToHex(keyPair.getPrivate().getEncoded(),16);
+        this.blocksMined = 0;
+        this.rabbixCoinsTotal = 0;
+        this.rabbixCoinsMined = 0;
     }   
 
 
@@ -111,6 +123,29 @@ public class Account {
         return this.privateKey;
     }
 
+    public int getBlocksMined() {
+        return this.blocksMined;
+    }
+
+    public void setBlocksMined(int blocksMined) {
+        this.blocksMined = blocksMined;
+    }
+
+    public int getRabbixCoinsTotal() {
+        return this.rabbixCoinsTotal;
+    }
+
+    public void setRabbixCoinsTotal(int rabbixCoinsTotal) {
+        this.rabbixCoinsTotal = rabbixCoinsTotal;
+    }
+
+    public int getRabbixCoinsMined() {
+        return this.rabbixCoinsMined;
+    }
+
+    public void setRabbixCoinsMined(int rabbixCoinsMined) {
+        this.rabbixCoinsMined = rabbixCoinsMined;
+    }
 
     @Override
     public String toString() {

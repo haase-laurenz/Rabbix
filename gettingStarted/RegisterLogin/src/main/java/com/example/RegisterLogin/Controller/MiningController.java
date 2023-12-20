@@ -41,8 +41,11 @@ public class MiningController {
     @GetMapping(path = "/mining/doMining")
     public String doMining(Model model,Principal principal){
 
+        
         if (blockchainService.getMiningStatus()==false){
-             System.out.println("Mining started"); 
+            Account account = accountService.findByName(principal.getName());
+            blockchainService.setActiveAccount(account);
+            System.out.println("Mining started"); 
             blockchainService.mine();
         }else{
              System.out.println("Mining interrupted"); 

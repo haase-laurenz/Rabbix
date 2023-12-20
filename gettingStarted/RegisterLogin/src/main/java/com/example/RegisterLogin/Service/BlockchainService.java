@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.example.RegisterLogin.Entity.Account;
 import com.example.RegisterLogin.Entity.Block;
 import com.example.RegisterLogin.Entity.Transaction;
 import com.example.RegisterLogin.Repo.BlockRepo;
@@ -18,6 +19,8 @@ public class BlockchainService {
     private BlockRepo blockRepo;
 
     private volatile boolean miningInterrupted;
+
+    private Account activeAccount;
 
     public BlockchainService(BlockRepo blockRepo) {
         this.blockRepo = blockRepo;
@@ -38,6 +41,9 @@ public class BlockchainService {
             block.mine();
             saveBlock(block);
             System.out.println("Found new Block");
+            activeAccount.setRabbixCoinsTotal(activeAccount.getRabbixCoinsTotal()+10);
+            activeAccount.setRabbixCoinsMined(activeAccount.getRabbixCoinsMined()+10);
+            activeAccount.setBlocksMined(activeAccount.getBlocksMined()+1);
         }
     }
 
@@ -86,6 +92,12 @@ public class BlockchainService {
 
     private synchronized void setMiningStatus(boolean status) {
         this.miningInterrupted = status;
+    }
+
+
+
+    public void setActiveAccount(Account account) {
+        this.activeAccount = account;
     }
 
 }

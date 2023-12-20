@@ -27,10 +27,10 @@
 
         <div class="crypto-info">
             <!-- Hier könntest du weitere Crypto-Informationen hinzufügen -->
-            <p>Rabbix Balance: <span th:text="${bitcoinBalance}"></span></p>
-            <p>Rabbix Mined: <span th:text="${ethereumBalance}"></span></p>
-            <p>Rabbix Transactions: <span th:text="${ethereumBalance}"></span></p>
-            <!-- Weitere Informationen je nach Bedarf -->
+            <p>Rabbix Balance: <span th:text="${account.rabbixCoinsTotal}"></span></p>
+            <p>Blocks Mined: <span th:text="${account.blocksMined}"></span></p>
+            <p>Rabbix Coins through mining: <span th:text="${account.rabbixCoinsMined}"></span></p>
+
         </div>
 
         <form action="/logout" method="post">
