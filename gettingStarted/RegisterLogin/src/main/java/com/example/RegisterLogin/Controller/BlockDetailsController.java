@@ -31,6 +31,8 @@ public class BlockDetailsController {
         List<Block> allBlocks = blockchainService.findAllBlocks();
         Collections.reverse(allBlocks); 
         model.addAttribute("blocks", allBlocks );
+        boolean blockChainStatus = blockchainService.isValid();
+        model.addAttribute("blockChainStatus", blockChainStatus);
         return "blockdetails";
     }
 

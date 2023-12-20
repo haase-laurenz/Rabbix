@@ -17,7 +17,7 @@
     <nav th:insert="~{navigation :: navigation}"></nav>
         <div class = "allBlocks">
             <h1>Check out all Blocks ever created!</h1>
-            <h3>Click on one of them to find more information</h3> 
+            <h3 th:text="${blockChainStatus != null ? (blockChainStatus ? 'Blockchain is confirmed.' : 'Blockchain is unconfirmed.') : 'Unknown'}">Blockchain is confirmed.</h3> 
         </div>
         
         <div class="container">

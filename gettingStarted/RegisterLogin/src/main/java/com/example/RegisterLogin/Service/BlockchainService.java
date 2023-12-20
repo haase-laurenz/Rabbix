@@ -7,8 +7,7 @@
     import org.springframework.scheduling.annotation.Async;
     import org.springframework.stereotype.Service;
 
-import com.example.RegisterLogin.Controller.UpdateController;
-import com.example.RegisterLogin.Entity.Account;
+    import com.example.RegisterLogin.Entity.Account;
     import com.example.RegisterLogin.Entity.Block;
     import com.example.RegisterLogin.Entity.Transaction;
     import com.example.RegisterLogin.Repo.BlockRepo;
@@ -22,17 +21,13 @@ import com.example.RegisterLogin.Entity.Account;
         @Autowired 
         private AccountService accountService;
 
-        @Autowired
-        private UpdateController updateController;
-
         private volatile boolean miningInterrupted;
 
         private Account activeAccount;
 
-        public BlockchainService(BlockRepo blockRepo, AccountService accountService, UpdateController updateController) {
+        public BlockchainService(BlockRepo blockRepo, AccountService accountService) {
             this.blockRepo = blockRepo;
             this.accountService = accountService;
-            this.updateController = updateController;
             this.miningInterrupted = false;
         }
 
@@ -49,7 +44,6 @@ import com.example.RegisterLogin.Entity.Account;
                 Block block = new Block(0, getLastHash(), new ArrayList<Transaction>(), getHeight());
                 block.mine();
                 saveBlock(block);
-                System.out.println("Found new Block");
                 setMiningRewards();
                 
             }
@@ -63,7 +57,10 @@ import com.example.RegisterLogin.Entity.Account;
         public void saveBlock(Block block){
             if (block.getOwnHash()!=null){
                 blockRepo.save(block);
-                updateController.updateMining();
+                if (!isValid()){
+                    System.out.println("Illiagal Block found");
+                    blockRepo.delete(block);
+                }
             }else{
                 System.out.println("No hash generated");
             }
@@ -97,6 +94,21 @@ import com.example.RegisterLogin.Entity.Account;
 
         public boolean getMiningStatus(){
             return this.miningInterrupted;
+        }
+
+        public boolean isValid(){
+            List<Block> blocks = blockRepo.findAll();
+            for (int i = 1; i < blocks.size(); i++) {
+                Block currentBlock = blocks.get(i);
+                Block previousBlock = blocks.get(i - 1);
+
+                if (!previousBlock.getOwnHash().equals(currentBlock.getPrevHash())) {
+                    System.out.println("Previous Hashes not equal: "+i);
+                    return false;
+                }
+            }
+            System.out.println("Valid Blockchain");
+            return true;
         }
 
         private synchronized void setMiningStatus(boolean status) {

@@ -44,7 +44,7 @@ public class Block {
 
     private int nonce;
 
-    private final String difficulty = "0000";
+    private final String difficulty = "00000";
 
     public Block(int id,String prevHash, List<Transaction> transactions, int height) {
         this.id=id;
@@ -68,6 +68,9 @@ public class Block {
             nonce++;
             this.ownHash = calculateHash();
         }
+        nonce++;
+        this.ownHash = calculateHash();
+        System.out.println("nonce: "+nonce);
         System.out.println("SOLVED THE PUZZLE!");
     }
 
