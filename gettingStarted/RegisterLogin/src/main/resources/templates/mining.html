@@ -9,12 +9,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mining</title>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function autoReload() {
+            setInterval(function () {
+                // Hier prüfen, ob das Mining läuft, bevor der automatische Reload ausgeführt wird
+                if ([[${miningStatus}]] === true) {
+                    location.reload();
+                }
+            }, 1000); // Hier die Zeit in Millisekunden angeben (hier: 5000ms oder 5 Sekunden)
+        }
+
+        // Automatischen Reload beim Laden der Seite starten, wenn das Mining läuft
+        window.onload = autoReload;
+        /*]]>*/
+    </script>
+
 </head>
 <body>
     <nav th:insert="~{navigation :: navigation}"></nav>
     
     <div class="mining-container">
-        <h1>Reward: 50 Rabbix Coins per found Block</h1>
+        <h1>Reward: 10 Rabbix Coins per found Block</h1>
         <p>Click the mine button to start mining!</p>
         <form th:action="@{/mining/doMining}">
             <button type="submit" th:text="${miningStatus != null ? (miningStatus ? 'STOP MINING' : 'START MINING') : 'Unknown'}"></button>

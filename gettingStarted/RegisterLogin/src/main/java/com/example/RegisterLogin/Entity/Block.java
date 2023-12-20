@@ -44,7 +44,7 @@ public class Block {
 
     private int nonce;
 
-    private final String difficulty = "00000";
+    private final String difficulty = "0000";
 
     public Block(int id,String prevHash, List<Transaction> transactions, int height) {
         this.id=id;

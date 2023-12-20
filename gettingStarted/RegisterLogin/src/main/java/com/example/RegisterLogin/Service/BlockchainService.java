@@ -7,7 +7,8 @@
     import org.springframework.scheduling.annotation.Async;
     import org.springframework.stereotype.Service;
 
-    import com.example.RegisterLogin.Entity.Account;
+import com.example.RegisterLogin.Controller.UpdateController;
+import com.example.RegisterLogin.Entity.Account;
     import com.example.RegisterLogin.Entity.Block;
     import com.example.RegisterLogin.Entity.Transaction;
     import com.example.RegisterLogin.Repo.BlockRepo;
@@ -21,13 +22,17 @@
         @Autowired 
         private AccountService accountService;
 
+        @Autowired
+        private UpdateController updateController;
+
         private volatile boolean miningInterrupted;
 
         private Account activeAccount;
 
-        public BlockchainService(BlockRepo blockRepo, AccountService accountService) {
+        public BlockchainService(BlockRepo blockRepo, AccountService accountService, UpdateController updateController) {
             this.blockRepo = blockRepo;
             this.accountService = accountService;
+            this.updateController = updateController;
             this.miningInterrupted = false;
         }
 
@@ -58,6 +63,7 @@
         public void saveBlock(Block block){
             if (block.getOwnHash()!=null){
                 blockRepo.save(block);
+                updateController.updateMining();
             }else{
                 System.out.println("No hash generated");
             }
@@ -108,6 +114,7 @@
             activeAccount.setRabbixCoinsMined(activeAccount.getRabbixCoinsMined()+10);
             activeAccount.setBlocksMined(activeAccount.getBlocksMined()+1);
             accountService.save(activeAccount);
+            
         }   
 
     }

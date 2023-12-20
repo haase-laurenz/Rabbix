@@ -38,6 +38,7 @@ public class BlockDetailsController {
     public String createNewBlock(){
 
         Block block = new Block(0, blockchainService.getLastHash(), new ArrayList<Transaction>(), blockchainService.getHeight());
+        block.mine();
         blockchainService.saveBlock(block);
         return "redirect:/blockDetails";
     }
