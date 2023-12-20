@@ -16,19 +16,11 @@
     <div class="mining-container">
         <h1>Mining UI</h1>
         <p>Click the mine button to start mining!</p>
-        <button onclick="startMining()">Mine</button>
-        <p id="mining-status"></p>
+        <form th:action="@{/mining/doMining}">
+            <button type="submit">Start Mining</button>
+        </form>
     </div>
 
-    <script>
-        function startMining() {
-            document.getElementById('mining-status').innerText = 'Mining in progress...';
-            // Implement actual mining logic here (this is just a placeholder)
-            setTimeout(() => {
-                document.getElementById('mining-status').innerText = 'Mining completed!';
-            }, 3000);
-        }
-    </script>
     
 </body>
 </html>

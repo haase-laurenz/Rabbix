@@ -42,11 +42,16 @@ public class Block {
     @Column(name = "block_timestamp",length = 255)
     private LocalDateTime timestamp;
 
+    private int nonce;
+
+    private final String difficulty = "000";
+
     public Block(int id,String prevHash, List<Transaction> transactions, int height) {
         this.id=id;
         this.prevHash = prevHash;
         this.transactions = transactions;
-        this.ownHash = calculateHash();
+        this.nonce=0;
+        this.ownHash = null;
         this.height = height;
         this.timestamp = LocalDateTime.now();
         
@@ -54,6 +59,14 @@ public class Block {
 
 
     public Block() {
+    }
+
+    public void mine(){
+        this.ownHash = calculateHash();
+        while(!this.ownHash.substring(0, 2).equals(difficulty)){
+            nonce++;
+            this.ownHash = calculateHash();
+        }
     }
 
     
@@ -69,6 +82,7 @@ public class Block {
                      .append(transaction.getAmount());
         }
         blockData.append(prevHash);
+        blockData.append(nonce);
 
         byte[] hashBytes = digest.digest(blockData.toString().getBytes());
 

@@ -8,12 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.example.RegisterLogin.Entity.Block;
 import com.example.RegisterLogin.Entity.Transaction;
 import com.example.RegisterLogin.Service.BlockchainService;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+@EnableAsync
 @ComponentScan(basePackages = "com.example")
 public class RegisterLoginApplication {
 
