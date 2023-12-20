@@ -72,5 +72,10 @@ public class AccountImpl implements AccountService{
     public Account findByName(String username) {
         return accountRepo.findByUsername(username);
     }
+
+    @Override
+    public Account save(Account account){
+        return accountRepo.save(account);
+    }
     
 }

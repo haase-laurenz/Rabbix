@@ -39,7 +39,7 @@ public class MiningController {
     }
 
     @GetMapping(path = "/mining/doMining")
-    public String doMining(Model model,Principal principal){
+    public String doMining(Principal principal){
 
         
         if (blockchainService.getMiningStatus()==false){

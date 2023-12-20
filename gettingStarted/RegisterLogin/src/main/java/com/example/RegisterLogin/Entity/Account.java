@@ -147,15 +147,21 @@ public class Account {
         this.rabbixCoinsMined = rabbixCoinsMined;
     }
 
+
     @Override
     public String toString() {
         return "{" +
-            " accountid='" + getaccountid() + "'" +
-            ", name='" + getUsername() + "'" +
+            ", username='" + getUsername() + "'" +
             ", email='" + getEmail() + "'" +
             ", password='" + getPassword() + "'" +
+            ", publicKey='" + getPublicKey() + "'" +
+            ", privateKey='" + getPrivateKey() + "'" +
+            ", blocksMined='" + getBlocksMined() + "'" +
+            ", rabbixCoinsTotal='" + getRabbixCoinsTotal() + "'" +
+            ", rabbixCoinsMined='" + getRabbixCoinsMined() + "'" +
             "}";
     }
+
 
 
 
