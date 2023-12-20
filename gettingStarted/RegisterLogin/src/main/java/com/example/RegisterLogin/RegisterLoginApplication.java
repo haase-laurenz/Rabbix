@@ -36,6 +36,7 @@ public class RegisterLoginApplication {
 						new Transaction(0,"sender1", "receiver1", 100.00),
 						new Transaction(0,"sender2", "receiver2", 50.00)
 				),blockchainService.getHeight());
+				block.mine();
 				blockchainService.saveBlock(block);
 			}
 			

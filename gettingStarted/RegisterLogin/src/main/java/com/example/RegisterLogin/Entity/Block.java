@@ -44,7 +44,7 @@ public class Block {
 
     private int nonce;
 
-    private final String difficulty = "000";
+    private final String difficulty = "000000";
 
     public Block(int id,String prevHash, List<Transaction> transactions, int height) {
         this.id=id;
@@ -63,10 +63,12 @@ public class Block {
 
     public void mine(){
         this.ownHash = calculateHash();
-        while(!this.ownHash.substring(0, 2).equals(difficulty)){
+        while(!this.ownHash.substring(0, difficulty.length()).equals(difficulty)){
+           
             nonce++;
             this.ownHash = calculateHash();
         }
+        System.out.println("SOLVED THE PUZZLE!");
     }
 
     

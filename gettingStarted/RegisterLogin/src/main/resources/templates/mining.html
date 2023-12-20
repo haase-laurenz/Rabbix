@@ -14,10 +14,9 @@
     <nav th:insert="~{navigation :: navigation}"></nav>
     
     <div class="mining-container">
-        <h1>Mining UI</h1>
         <p>Click the mine button to start mining!</p>
         <form th:action="@{/mining/doMining}">
-            <button type="submit">Start Mining</button>
+            <button type="submit" th:text="${miningStatus != null ? (miningStatus ? 'STOP MINING' : 'START MINING') : 'Unknown'}"></button>
         </form>
     </div>
 

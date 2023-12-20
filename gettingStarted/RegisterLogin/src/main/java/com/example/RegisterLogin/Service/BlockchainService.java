@@ -17,32 +17,32 @@ public class BlockchainService {
     @Autowired
     private BlockRepo blockRepo;
 
+    private volatile boolean miningInterrupted;
+
     public BlockchainService(BlockRepo blockRepo) {
         this.blockRepo = blockRepo;
+        this.miningInterrupted = false;
     }
 
-    private volatile boolean miningInterrupted = false;
+    
 
     public List<Block> findAllBlocks(){
         return blockRepo.findAll();
     }
 
     @Async
-    public void mine(){
-        miningInterrupted = false;
-
-    }
-
-    public void interruptMining(){
-        miningInterrupted = true;
-    }
-
-    public void mineBlock(){
-        Block block = new Block(0, getLastHash(), new ArrayList<Transaction>(), getHeight());
-        while (miningInterrupted == false) {
+    public void mine() {
+        setMiningStatus(true);
+        while (miningInterrupted) {
+            Block block = new Block(0, getLastHash(), new ArrayList<Transaction>(), getHeight());
             block.mine();
             saveBlock(block);
+            System.out.println("Found new Block");
         }
+    }
+
+    public void interruptMining() {
+        setMiningStatus(false);
     }
     
     
@@ -61,7 +61,7 @@ public class BlockchainService {
         if (block.getOwnHash()!=null){
             blockRepo.save(block);
         }
-        
+        System.out.println("Genesis Block generated");
     }
 
     public int getHeight(){
@@ -78,6 +78,14 @@ public class BlockchainService {
             // Handle the case when there are no blocks in the database
             return null; // or throw an exception or return a default value
         }
+    }
+
+    public boolean getMiningStatus(){
+        return this.miningInterrupted;
+    }
+
+    private synchronized void setMiningStatus(boolean status) {
+        this.miningInterrupted = status;
     }
 
 }

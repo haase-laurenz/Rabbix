@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.RegisterLogin.Entity.Account;
-import com.example.RegisterLogin.Entity.Block;
-import com.example.RegisterLogin.Repo.BlockRepo;
 import com.example.RegisterLogin.Service.AccountService;
 import com.example.RegisterLogin.Service.BlockchainService;
 
@@ -22,9 +20,9 @@ public class MiningController {
     @Autowired
     private BlockchainService blockchainService;
 
-    public MiningController(AccountService accountService, BlockchainService blockchainService) {
-        this.accountService = accountService;
+    public MiningController(BlockchainService blockchainService, AccountService accountService) {
         this.blockchainService = blockchainService;
+        this.accountService = accountService;
     }
 
     @GetMapping(path = "/mining")
@@ -34,15 +32,23 @@ public class MiningController {
 
         model.addAttribute("account", account);
 
+        boolean miningStatus = blockchainService.getMiningStatus();
+        model.addAttribute("miningStatus", miningStatus);
+
         return "mining";
     }
 
     @GetMapping(path = "/mining/doMining")
     public String doMining(Model model,Principal principal){
 
-        System.out.println("Mining started");  
-        blockchainService.mine();
-        System.out.println("redirect");
+        if (blockchainService.getMiningStatus()==false){
+             System.out.println("Mining started"); 
+            blockchainService.mine();
+        }else{
+             System.out.println("Mining interrupted"); 
+            blockchainService.interruptMining();
+        }
+        
         return "redirect:/mining";
     }
 
